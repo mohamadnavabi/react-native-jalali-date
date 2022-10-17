@@ -1,21 +1,36 @@
 # react-native-jalali-datepicker
 
-Jalali date picker for android and ios
+Jalali date picker for React Native both platform (Android and iOS)
 
 ## Installation
 
 ```sh
-npm install react-native-jalali-datepicker
+npm install react-native-jalali-datepicker moment-jalaali react-native-wheel-picker-android react-native-modal
+```
+
+or
+
+```sh
+yarn add react-native-jalali-datepicker moment-jalaali react-native-wheel-picker-android react-native-modal
 ```
 
 ## Usage
 
 ```js
-import { multiply } from "react-native-jalali-datepicker";
+import JalaliDatePicker from 'react-native-jalali-datepicker';
 
 // ...
 
-const result = await multiply(3, 7);
+<JalaliDatePicker
+  visible={true}
+  onClose={() => {}}
+  onButtonPress={(result) => {
+    console.log(result);
+  }}
+  initDate="TODAY"
+  minDate={{ year: 1369, month: 8, day: 29 }}
+  buttonText="انتخاب"
+/>;
 ```
 
 ## Contributing
