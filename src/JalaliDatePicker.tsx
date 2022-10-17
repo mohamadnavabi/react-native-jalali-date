@@ -315,11 +315,13 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
       setMonth(selectedMonth);
       getDaysBaseOnMonth(selectedMonth);
     }
+
     if (selectedDay) {
       selectedIndex.day = selectedDay;
       readable.day = Number(days[selectedDay]);
       setDay(selectedDay);
     }
+
     setLoading(false);
 
     if (onChange) onChange(onChangeItem());

@@ -1,33 +1,47 @@
-import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { useState } from 'react';
+import { Pressable, SafeAreaView, StyleSheet, Text } from 'react-native';
 import JalaliDatePicker from 'react-native-jalali-datepicker';
 
 export default function App() {
+  const [showDatePicker, setshowDatePicker] = useState(false);
+
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <JalaliDatePicker
-        visible={true}
-        onClose={() => {}}
-        onButtonPress={(result) => {
+        visible={showDatePicker}
+        onClose={() => setshowDatePicker(false)}
+        onChange={(result) => {
+          console.log('Item changed', result);
           console.log(result);
         }}
-        initDate="TODAY"
-        minDate={{ year: 1369, month: 8, day: 29 }}
+        onButtonPress={(result) => {
+          console.log('Button pressed', result);
+          setshowDatePicker(false);
+        }}
+        initDate={{ year: 1372, month: 3, day: 12 }}
         buttonText="انتخاب"
       />
-    </View>
+
+      <Pressable style={styles.button} onPress={() => setshowDatePicker(true)}>
+        <Text style={styles.buttonText}>Toggle Date Picker</Text>
+      </Pressable>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
   },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
+  button: {
+    backgroundColor: '#4dc6ff',
+    borderRadius: 25,
+  },
+  buttonText: {
+    color: '#ffffff',
+    paddingHorizontal: 30,
+    paddingVertical: 5,
   },
 });

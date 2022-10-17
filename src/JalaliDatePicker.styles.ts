@@ -2,7 +2,7 @@ import { Platform, StyleSheet } from 'react-native';
 
 export default StyleSheet.create<any>({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: '#ffffff',
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
     ...Platform.select({
@@ -47,7 +47,7 @@ export default StyleSheet.create<any>({
     }),
   },
   buttonText: (fontFamily: string) => ({
-    color: '#fff',
+    color: '#ffffff',
     fontFamily,
     ...Platform.select({
       ios: {

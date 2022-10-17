@@ -1,13 +1,13 @@
 import { TextStyle, ViewStyle } from 'react-native';
 import { Moment } from 'moment-jalaali';
 
-type dateType = {
+type DateType = {
   year: number | string;
   month: number | string;
   day: number | string;
 };
 
-type outputDateType = {
+export type ResultDateType = {
   year: number | string;
   month: number | string;
   day: number | string;
@@ -20,16 +20,16 @@ enum today {
 
 export interface JalaliDatePickerProps {
   visible: boolean;
-  initDate?: dateType | keyof typeof today;
-  minDate?: dateType | keyof typeof today;
-  maxDate?: dateType | keyof typeof today;
+  initDate?: DateType | keyof typeof today;
+  minDate?: DateType | keyof typeof today;
+  maxDate?: DateType | keyof typeof today;
   onClose: () => void;
   activeOpacity?: number;
   containerStyle?: ViewStyle;
   withButton?: boolean;
   buttonStyle?: ViewStyle;
-  onChange?: (arg: outputDateType) => void;
-  onButtonPress: (arg: outputDateType) => void;
+  onChange?: (arg: ResultDateType) => void;
+  onButtonPress: (arg: ResultDateType) => void;
   buttonText: string;
   buttonTextStyle?: TextStyle;
   itemTextFontFamily?: string;
