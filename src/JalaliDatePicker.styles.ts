@@ -1,11 +1,16 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 export default StyleSheet.create<any>({
   container: {
     backgroundColor: '#fff',
-    padding: 15,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
+    ...Platform.select({
+      android: {
+        padding: 15,
+      },
+    }),
+    paddingHorizontal: 15,
   },
   modal: {
     justifyContent: 'flex-end',
@@ -35,9 +40,19 @@ export default StyleSheet.create<any>({
     paddingHorizontal: 10,
     borderRadius: 20,
     marginTop: 15,
+    ...Platform.select({
+      ios: {
+        marginBottom: 25,
+      },
+    }),
   },
   buttonText: (fontFamily: string) => ({
     color: '#fff',
     fontFamily,
+    ...Platform.select({
+      ios: {
+        paddingVertical: 5,
+      },
+    }),
   }),
 });
