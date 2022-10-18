@@ -5,7 +5,7 @@ import React, {
   useCallback,
   FunctionComponent,
 } from 'react';
-import { View, Text, InteractionManager, TouchableOpacity } from 'react-native';
+import { View, Text, InteractionManager, TouchableOpacity, Platform } from 'react-native';
 import type {
   DateObject,
   DateRange,
@@ -64,7 +64,7 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
   onLoading,
 }: JalaliDatePickerProps) => {
   // TODO: uncomment this line when fix initDate bug
-  if (!visible) return null;
+  if (!visible && Platform.OS !== 'ios') return null;
 
   const minDateIsObject =
     typeof minDate === 'object' && minDate.hasOwnProperty('year');
