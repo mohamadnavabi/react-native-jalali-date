@@ -15,8 +15,8 @@ yarn add react-native-jalali-datepicker moment-jalaali react-native-wheel-picker
 ```
 
 <p align="center">
-  <img src="https://github.com/mohamadnavabi/react-native-jalali-datepicker/blob/master/example/Android.png?raw=true" width="350" title="Android example">
-  <img src="https://github.com/mohamadnavabi/react-native-jalali-datepicker/blob/master/example/iOS.png?raw=true" width="350" alt="iOS example">
+  <img src="https://github.com/mohamadnavabi/react-native-jalali-datepicker/blob/master/example/Android.png?raw=true" width="250" title="Android example">
+  <img src="https://github.com/mohamadnavabi/react-native-jalali-datepicker/blob/master/example/iOS.png?raw=true" width="250" alt="iOS example">
 </p>
 
 ## Usage
