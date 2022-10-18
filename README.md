@@ -14,8 +14,10 @@ or
 yarn add react-native-jalali-datepicker moment-jalaali react-native-wheel-picker-android react-native-modal
 ```
 
-![Android example](https://github.com/mohamadnavabi/react-native-jalali-datepicker/blob/master/example/Android.png?raw=true)
-![iOS example](https://github.com/mohamadnavabi/react-native-jalali-datepicker/blob/master/example/iOS.png?raw=true)
+<p align="center">
+  <img src="https://github.com/mohamadnavabi/react-native-jalali-datepicker/blob/master/example/Android.png?raw=true" width="350" title="Android example">
+  <img src="https://github.com/mohamadnavabi/react-native-jalali-datepicker/blob/master/example/iOS.png?raw=true" width="350" alt="iOS example">
+</p>
 
 ## Usage
 
