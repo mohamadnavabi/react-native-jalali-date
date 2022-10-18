@@ -110,10 +110,10 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
   const noActionTaken = useRef(true);
   const prev = useRef({ months: [''], days: [''] }).current;
   const readable = useRef({
-    year: year,
-    month: month,
-    day: day,
-    monthName: 'فروردین',
+    year: Number(years[year]),
+    month: defaultMonths.indexOf(months[month]) + 1,
+    day: Number(days[day]),
+    monthName: months[month],
   }).current;
   const selectedIndex = useRef({
     year: 0,
@@ -300,20 +300,20 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
     selectedMonth?: number | undefined,
     selectedDay?: number | undefined
   ) => {
-    if (selectedYear) {
+    if (selectedYear !== undefined) {
       readable.year = Number(years[selectedYear]);
       setYear(selectedYear);
       getMonthsBaseOnYear(selectedYear);
     }
 
-    if (selectedMonth) {
+    if (selectedMonth !== undefined) {
       readable.month = defaultMonths.indexOf(months[selectedMonth]) + 1;
       readable.monthName = months[selectedMonth];
       setMonth(selectedMonth);
       getDaysBaseOnMonth(selectedMonth);
     }
 
-    if (selectedDay) {
+    if (selectedDay !== undefined) {
       selectedIndex.day = selectedDay;
       readable.day = Number(days[selectedDay]);
       setDay(selectedDay);
