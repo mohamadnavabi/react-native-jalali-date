@@ -25,7 +25,6 @@
     "test": "jest",
     "typescript": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
-    "prepare": "bob build",
     "release": "release-it",
     "example": "yarn --cwd example",
     "pods": "cd example && pod-install --quiet",
@@ -36,7 +35,10 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/mohamadnavabi/react-native-jalali-datepicker.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohamadnavabi/react-native-jalali-datepicker.git"
+  },
   "author": "Mohammad Navabi <navabifar@gmail.com> (https://mohammadnavabi.ir)",
   "license": "MIT",
   "bugs": {
@@ -143,5 +145,9 @@
         }
       ]
     ]
+  },
+  "directories": {
+    "example": "example",
+    "lib": "lib"
   }
 }

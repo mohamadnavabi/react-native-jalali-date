@@ -12,7 +12,6 @@ export default function App() {
         onClose={() => setshowDatePicker(false)}
         onChange={(result) => {
           console.log('Item changed', result);
-          console.log(result);
         }}
         onButtonPress={(result) => {
           console.log('Button pressed', result);

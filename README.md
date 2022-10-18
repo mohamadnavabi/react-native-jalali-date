@@ -14,6 +14,9 @@ or
 yarn add react-native-jalali-datepicker moment-jalaali react-native-wheel-picker-android react-native-modal
 ```
 
+![Android example](https://github.com/mohamadnavabi/react-native-jalali-datepicker/blob/master/example/Android.png?raw=true)
+![iOS example](https://github.com/mohamadnavabi/react-native-jalali-datepicker/blob/master/example/iOS.png?raw=true)
+
 ## Usage
 
 ```js
@@ -31,7 +34,6 @@ export default function App() {
         onClose={() => setshowDatePicker(false)}
         onChange={(result) => {
           console.log('Item changed', result);
-          console.log(result);
         }}
         onButtonPress={(result) => {
           console.log('Button pressed', result);

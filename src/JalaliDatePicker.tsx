@@ -63,6 +63,9 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
   buttonTextStyle,
   onLoading,
 }: JalaliDatePickerProps) => {
+  // TODO: uncomment this line when fix initDate bug
+  if (!visible) return null;
+
   const minDateIsObject =
     typeof minDate === 'object' && minDate.hasOwnProperty('year');
   const maxDateIsObject =
@@ -120,8 +123,6 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
 
   useEffect(() => {
     getDateRange().then(setDateRange);
-
-    return () => interactionManager?.cancel();
   }, []);
 
   useEffect(() => {
@@ -284,19 +285,15 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
     setLoading(true);
   }, []);
 
-  const onChangeItem = () => {
-    noActionTaken.current = true;
-
-    return {
-      year: readable.year,
-      month: readable.month,
-      day: readable.day,
-      moment: moment(
-        `${readable.year}/${readable.month}/${readable.day}`,
-        'jYYYY/jMM/jDD'
-      ),
-    };
-  };
+  const onChangeItem = useCallback(() => ({
+    year: readable.year,
+    month: readable.month,
+    day: readable.day,
+    moment: moment(
+      `${readable.year}/${readable.month}/${readable.day}`,
+      'jYYYY/jMM/jDD'
+    ),
+  }), []);
 
   const onSelected = (
     selectedYear?: number | undefined,
@@ -324,7 +321,7 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
 
     setLoading(false);
 
-    if (onChange) onChange(onChangeItem());
+    if (onChange && !noActionTaken.current) onChange(onChangeItem());
   };
 
   const onButtonPressed = () => onButtonPress(onChangeItem());
@@ -340,6 +337,10 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
       style={styles.modal}
       backdropOpacity={0.5}
       statusBarTranslucent
+      onModalHide={() => {
+        noActionTaken.current = true;
+        interactionManager?.cancel();
+      }}
     >
       <View
         style={[styles.container, containerStyle]}
