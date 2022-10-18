@@ -1,5 +1,5 @@
 {
-  "name": "react-native-jalali-date-pick",
+  "name": "react-native-jalali-date",
   "version": "0.1.0",
   "description": "Jalali date picker for react native both platform(Android and iOS)",
   "main": "lib/commonjs/index",
@@ -13,7 +13,7 @@
     "android",
     "ios",
     "cpp",
-    "react-native-jalali-datepicker.podspec",
+    "react-native-jalali-date.podspec",
     "!lib/typescript/example",
     "!android/build",
     "!ios/build",
@@ -37,14 +37,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mohamadnavabi/react-native-jalali-datepicker.git"
+    "url": "git+https://github.com/mohamadnavabi/react-native-jalali-date.git"
   },
   "author": "Mohammad Navabi <navabifar@gmail.com> (https://mohammadnavabi.ir)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mohamadnavabi/react-native-jalali-datepicker.git/issues"
+    "url": "https://github.com/mohamadnavabi/react-native-jalali-date/issues"
   },
-  "homepage": "https://github.com/mohamadnavabi/react-native-jalali-datepicker.git#readme",
+  "homepage": "https://github.com/mohamadnavabi/react-native-jalali-date#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },

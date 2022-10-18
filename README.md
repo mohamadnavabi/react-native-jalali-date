@@ -1,22 +1,22 @@
-# react-native-jalali-datepicker
+# react-native-jalali-date
 
 Jalali date picker for React Native both platform (Android and iOS)
 
 <p align="center">
-  <img src="https://github.com/mohamadnavabi/react-native-jalali-datepicker/blob/master/example/Android.png?raw=true" width="300" max-width="300" title="Android example">
-  <img src="https://github.com/mohamadnavabi/react-native-jalali-datepicker/blob/master/example/iOS.png?raw=true" width="250" max-width="300" alt="iOS example">
+  <img src="https://github.com/mohamadnavabi/react-native-jalali-date/blob/master/example/Android.png?raw=true" width="300" max-width="300" title="Android example">
+  <img src="https://github.com/mohamadnavabi/react-native-jalali-date/blob/master/example/iOS.png?raw=true" width="250" max-width="300" alt="iOS example">
 </p>
 
 ## Installation
 
 ```sh
-npm install react-native-jalali-date-pick moment-jalaali react-native-wheel-picker-android react-native-modal
+npm install react-native-jalali-date moment-jalaali react-native-wheel-picker-android react-native-modal
 ```
 
 or
 
 ```sh
-yarn add react-native-jalali-date-pick moment-jalaali react-native-wheel-picker-android react-native-modal
+yarn add react-native-jalali-date moment-jalaali react-native-wheel-picker-android react-native-modal
 ```
 
 ## Usage
