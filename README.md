@@ -13,11 +13,17 @@ Jalali date picker for React Native both platform (Android and iOS)
 npm install react-native-jalali-date react-native-wheel-picker-android@github:mohamadnavabi/ReactNativeWheelPicker#1.0.0 react-native-modal  moment-jalaali 
 ```
 
-or
-
 ```sh
 yarn add react-native-jalali-date react-native-wheel-picker-android@github:mohamadnavabi/ReactNativeWheelPicker#1.0.0 react-native-modal moment-jalaali
 ```
+
+<b>Add this line to ios/Podfile:<b>
+
+```js
+pod 'RNCPicker', :path => '../node_modules/@react-native-picker/picker'
+```
+
+
 
 ## Usage
 
