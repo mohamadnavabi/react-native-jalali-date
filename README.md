@@ -10,13 +10,13 @@ Jalali date picker for React Native both platform (Android and iOS)
 ## Installation
 
 ```sh
-npm install react-native-jalali-date moment-jalaali react-native-wheel-picker-android react-native-modal
+npm install react-native-jalali-date react-native-wheel-picker-android@github:mohamadnavabi/ReactNativeWheelPicker#1.0.0 react-native-modal  moment-jalaali 
 ```
 
 or
 
 ```sh
-yarn add react-native-jalali-date moment-jalaali react-native-wheel-picker-android react-native-modal
+yarn add react-native-jalali-date react-native-wheel-picker-android@github:mohamadnavabi/ReactNativeWheelPicker#1.0.0 react-native-modal moment-jalaali
 ```
 
 ## Usage
@@ -24,7 +24,7 @@ yarn add react-native-jalali-date moment-jalaali react-native-wheel-picker-andro
 ```js
 import React, { useState } from 'react';
 import { Pressable, SafeAreaView, StyleSheet, Text } from 'react-native';
-import JalaliDatePicker from 'react-native-jalali-datepicker';
+import JalaliDatePicker from 'react-native-jalali-date';
 
 export default function App() {
   const [showDatePicker, setshowDatePicker] = useState(false);
