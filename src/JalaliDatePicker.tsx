@@ -62,6 +62,7 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
   buttonText,
   buttonTextStyle,
   onLoading,
+  isLtr = false
 }: JalaliDatePickerProps) => {
   // TODO: uncomment this line when fix initDate bug
   if (!visible && Platform.OS !== 'ios') return null;
@@ -346,7 +347,7 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
         style={[styles.container, containerStyle]}
         onTouchStart={onPickerTouchStart}
       >
-        <View style={styles.pickersWrapper}>
+        <View style={styles.pickersWrapper(isLtr)}>
           {/* Date column */}
           <View style={[styles.column, styles.dayColumn]}>
             <CustomPicker

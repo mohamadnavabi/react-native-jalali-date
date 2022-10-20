@@ -35,6 +35,7 @@ export interface JalaliDatePickerProps {
   itemTextFontFamily?: string;
   selectedItemTextFontFamily?: string;
   onLoading?: (loading: boolean) => void;
+  isLtr?: boolean
 }
 
 export interface CustomPickerProps {

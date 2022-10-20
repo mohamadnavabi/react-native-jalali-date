@@ -16,9 +16,9 @@ export default StyleSheet.create<any>({
     justifyContent: 'flex-end',
     margin: 0,
   },
-  pickersWrapper: {
-    flexDirection: 'row',
-  },
+  pickersWrapper: (isLtr: boolean) => ({
+    flexDirection: isLtr ? 'row-reverse' : 'row',
+  }),
   column: {
     flex: 0.7,
     alignItems: 'center',
