@@ -148,6 +148,7 @@
     ]
   },
   "directories": {
-    "example": "example"
+    "example": "example",
+    "lib": "lib"
   }
 }

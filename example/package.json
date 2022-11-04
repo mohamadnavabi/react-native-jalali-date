@@ -9,8 +9,11 @@
     "start": "react-native start"
   },
   "dependencies": {
+    "jalali-moment": "^3.3.8",
     "react": "16.13.1",
-    "react-native": "0.63.4"
+    "react-native": "0.63.4",
+    "react-native-modal": "^13.0.1",
+    "react-native-wheel-picker-android": "github:mohamadnavabi/ReactNativeWheelPicker#1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
