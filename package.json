@@ -1,6 +1,6 @@
 {
   "name": "react-native-jalali-date",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Jalali date picker for react native both platform(Android and iOS)",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -25,7 +25,6 @@
     "test": "jest",
     "typescript": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
-    "prepare": "bob build",
     "release": "release-it",
     "example": "yarn --cwd example",
     "pods": "cd example && pod-install --quiet",
