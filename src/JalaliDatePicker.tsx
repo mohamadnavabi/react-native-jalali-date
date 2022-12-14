@@ -27,6 +27,7 @@ const today: DateObject = {
   month: Number(todayMoment[1]),
   day: Number(todayMoment[2]),
 };
+const defaultDays = Array.from({ length: 31 }, (_, i) => (i + 1).toString());
 
 const defaultMonths = [
   'فروردین',
@@ -91,9 +92,7 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
   );
 
   // Month and days config
-  const [days, setDays] = useState(
-    Array.from({ length: 31 }, (_, i) => (i + 1).toString())
-  );
+  const [days, setDays] = useState(defaultDays);
   const [months, setMonths] = useState(defaultMonths);
 
   // Selected items
@@ -255,7 +254,7 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
   const getMonthsBaseOnYear = (yearIndex: number) => {
     selectedIndex.year = yearIndex;
     const selectedYear = dateRangeValues[yearIndex];
-    const selectedDays = selectedYear.days[selectedIndex.month];
+    const selectedDays = selectedYear.days[selectedIndex.month] || defaultDays;
     setMonths(selectedYear.months);
     setDays(selectedDays);
   };
