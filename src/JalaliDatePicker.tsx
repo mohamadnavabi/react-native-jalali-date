@@ -138,6 +138,11 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
   }, [months]);
 
   useEffect(() => {
+    const selectedDays = dateRangeValues[year].days[month] || defaultDays;
+    setDays(selectedDays);
+  }, [dateRange, month, year])
+
+  useEffect(() => {
     if (!noActionTaken.current && prev.days.length !== days.length) {
       onSelected(
         undefined,
@@ -254,15 +259,11 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
   const getMonthsBaseOnYear = (yearIndex: number) => {
     selectedIndex.year = yearIndex;
     const selectedYear = dateRangeValues[yearIndex];
-    const selectedDays = selectedYear.days[selectedIndex.month] || defaultDays;
     setMonths(selectedYear.months);
-    setDays(selectedDays);
   };
 
   const getDaysBaseOnMonth = (monthIndex: number) => {
     selectedIndex.month = monthIndex;
-    const selectedDays = dateRangeValues[selectedIndex.year].days[monthIndex] || defaultDays;
-    setDays(selectedDays);
   };
 
   // Total days in month with local validition(because moment has a bug! => moment.jDaysInMonth(1400, 12) does not have 31 days, it have 29 days)
@@ -307,8 +308,8 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
     }
 
     if (selectedMonth !== undefined) {
-      readable.month = defaultMonths.indexOf(months[selectedMonth]) + 1;
-      readable.monthName = months[selectedMonth];
+      readable.month = defaultMonths.indexOf(dateRangeValues[year].months[selectedMonth]) + 1;
+      readable.monthName = dateRangeValues[year].months[selectedMonth];
       setMonth(selectedMonth);
       getDaysBaseOnMonth(selectedMonth);
     }
