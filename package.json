@@ -1,6 +1,6 @@
 {
   "name": "react-native-jalali-date",
-  "version": "0.2.11",
+  "version": "0.2.12",
   "description": "Jalali date picker for react native both platform(Android and iOS)",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",

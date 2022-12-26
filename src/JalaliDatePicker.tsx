@@ -19,7 +19,7 @@ import styles from './JalaliDatePicker.styles';
 import { isAndroidTwelve, persianDigits } from './helpers';
 
 const DEFAULT_START_YEAR = 1340;
-const DEFAULT_MONTH_DAYS = 30;
+const DEFAULT_MONTH_DAYS = 31;
 
 const todayMoment = moment().format('jYYYY/jM/jD').split('/');
 const today: DateObject = {
@@ -182,7 +182,7 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
            */
           dMonths.forEach((m, mIndex) => {
             let dDays = Array.from(
-              { length: getTotalDays(Number(y), mIndex + 1) },
+              { length: getTotalDays(Number(y), mIndex) },
               (_, index) => (index + 1).toString()
             );
             // Check min day
@@ -268,7 +268,7 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
 
   // Total days in month with local validition(because moment has a bug! => moment.jDaysInMonth(1400, 12) does not have 31 days, it have 29 days)
   const getTotalDays = useCallback((year: any, month: any): number => {
-    if (year == 0 || month == 0) return DEFAULT_MONTH_DAYS;
+    if (year == 0) return DEFAULT_MONTH_DAYS;
 
     let days = moment.jDaysInMonth(year, month);
     while (
