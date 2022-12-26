@@ -5,7 +5,13 @@ import React, {
   useCallback,
   FunctionComponent,
 } from 'react';
-import { View, Text, InteractionManager, TouchableOpacity, Platform } from 'react-native';
+import {
+  View,
+  Text,
+  InteractionManager,
+  TouchableOpacity,
+  Platform,
+} from 'react-native';
 import type {
   DateObject,
   DateRange,
@@ -63,7 +69,7 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
   buttonText,
   buttonTextStyle,
   onLoading,
-  isLtr = false
+  isLtr = false,
 }: JalaliDatePickerProps) => {
   // TODO: uncomment this line when fix initDate bug
   if (!visible && Platform.OS !== 'ios') return null;
@@ -140,7 +146,7 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
   useEffect(() => {
     const selectedDays = dateRangeValues[year].days[month] || defaultDays;
     setDays(selectedDays);
-  }, [dateRange, month, year])
+  }, [dateRange, month, year]);
 
   useEffect(() => {
     if (!noActionTaken.current && prev.days.length !== days.length) {
@@ -182,7 +188,12 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
            */
           dMonths.forEach((m, mIndex) => {
             let dDays = Array.from(
-              { length: getTotalDays(Number(y), mIndex) },
+              {
+                length: getTotalDays(
+                  Number(y),
+                  defaultMonths.findIndex((month) => month === m)
+                ),
+              },
               (_, index) => (index + 1).toString()
             );
             // Check min day
@@ -216,7 +227,7 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
   const setInitDate = () => {
     interactionManager = InteractionManager.runAfterInteractions(() => {
       if (
-        (initDate && month === 0 && year === 0 && !minDate) ||
+        (initDate && month === 0 && year === 0) ||
         (minDate &&
           initDate === 'TODAY' &&
           minDateIsObject &&
@@ -242,16 +253,20 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
               day: today.day,
             };
 
-        const yearIndex = Object.keys(dateRange).findIndex(
-          (year) => Number(year) === initialDate.year
-        );
-        const monthIndex = dateRangeValues[yearIndex].months.findIndex(
-          (month) => month === defaultMonths[initialDate.month - 1]
-        );
-        const dayIndex = dateRangeValues[yearIndex].days[monthIndex].findIndex(
-          (day) => Number(day) === initialDate.day
-        );
-        onSelected(yearIndex, monthIndex, dayIndex);
+        try {
+          const yearIndex = Object.keys(dateRange).findIndex(
+            (year) => Number(year) === initialDate.year
+          );
+          const monthIndex = dateRangeValues[yearIndex].months.findIndex(
+            (month) => month === defaultMonths[initialDate.month - 1]
+          );
+          const dayIndex = dateRangeValues[yearIndex].days[
+            monthIndex
+          ].findIndex((day) => Number(day) === initialDate.day);
+          onSelected(yearIndex, monthIndex, dayIndex);
+        } catch (error) {
+          console.log('initDate has error: ', error);
+        }
       }
     });
   };
@@ -267,34 +282,37 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
   };
 
   // Total days in month with local validition(because moment has a bug! => moment.jDaysInMonth(1400, 12) does not have 31 days, it have 29 days)
-  const getTotalDays = useCallback((year: any, month: any): number => {
+  const getTotalDays = (year: any, month: any): number => {
     if (year == 0) return DEFAULT_MONTH_DAYS;
 
     let days = moment.jDaysInMonth(year, month);
     while (
-      moment(`${year}/${month}/${days}`, 'jYYYY/jM/jD').format(
+      moment(`${year}/${month + 1}/${days}`, 'jYYYY/jM/jD').format(
         'jYYYY/jMM/jDD'
       ) == 'Invalid date'
     )
       days--;
 
     return days;
-  }, []);
+  };
 
   const onPickerTouchStart = useCallback(() => {
     noActionTaken.current = false;
     setLoading(true);
   }, []);
 
-  const onChangeItem = useCallback(() => ({
-    year: readable.year,
-    month: readable.month,
-    day: readable.day,
-    moment: moment(
-      `${readable.year}/${readable.month}/${readable.day}`,
-      'jYYYY/jMM/jDD'
-    ),
-  }), []);
+  const onChangeItem = useCallback(
+    () => ({
+      year: readable.year,
+      month: readable.month,
+      day: readable.day,
+      moment: moment(
+        `${readable.year}/${readable.month}/${readable.day}`,
+        'jYYYY/jMM/jDD'
+      ),
+    }),
+    []
+  );
 
   const onSelected = (
     selectedYear?: number | undefined,
@@ -308,7 +326,8 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
     }
 
     if (selectedMonth !== undefined) {
-      readable.month = defaultMonths.indexOf(dateRangeValues[year].months[selectedMonth]) + 1;
+      readable.month =
+        defaultMonths.indexOf(dateRangeValues[year].months[selectedMonth]) + 1;
       readable.monthName = dateRangeValues[year].months[selectedMonth];
       setMonth(selectedMonth);
       getDaysBaseOnMonth(selectedMonth);
