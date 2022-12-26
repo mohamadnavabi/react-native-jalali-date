@@ -114,18 +114,6 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
 
   // References
   const noActionTaken = useRef(true);
-  const prev = useRef({ months: [''], days: [''] }).current;
-  const readable = useRef({
-    year: Number(years[year]),
-    month: defaultMonths.indexOf(months[month]) + 1,
-    day: Number(days[day]),
-    monthName: months[month],
-  }).current;
-  const selectedIndex = useRef({
-    year: 0,
-    month: 0,
-    day: 0,
-  }).current;
 
   useEffect(() => {
     getDateRange().then(setDateRange);
@@ -137,27 +125,9 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
   }, [dateRange]);
 
   useEffect(() => {
-    if (!noActionTaken.current && prev.months.length !== months.length) {
-      setMonth(months.indexOf(readable.monthName) ?? 0);
-      prev.months = months;
-    }
-  }, [months]);
-
-  useEffect(() => {
     const selectedDays = dateRangeValues[year].days[month] || defaultDays;
     setDays(selectedDays);
   }, [dateRange, month, year]);
-
-  useEffect(() => {
-    if (!noActionTaken.current && prev.days.length !== days.length) {
-      onSelected(
-        undefined,
-        undefined,
-        days.indexOf(readable.day.toString()) ?? 0
-      );
-      prev.days = days;
-    }
-  }, [days]);
 
   useEffect(() => {
     if (onLoading) onLoading(loading);
@@ -241,17 +211,31 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
           minDate.month <= initDate.month &&
           minDate.day <= initDate.day)
       ) {
-        const initialDate = initDateIsObject
-          ? {
-              year: Number(initDate.year),
-              month: Number(initDate.month),
-              day: Number(initDate.day),
-            }
-          : {
-              year: today.year,
-              month: today.month,
-              day: today.day,
-            };
+        let initialDate = {
+          year: today.year,
+          month: today.month,
+          day: today.day,
+        };
+
+        if (minDateIsObject) {
+          initialDate = {
+            year: Number(minDate.year),
+            month: Number(minDate.month),
+            day: Number(minDate.day),
+          };
+        }
+        if (
+          initDateIsObject &&
+          initDate.year !== 0 &&
+          initDate.month !== 0 &&
+          initDate.day !== 0
+        ) {
+          initialDate = {
+            year: Number(initDate.year),
+            month: Number(initDate.month),
+            day: Number(initDate.day),
+          };
+        }
 
         try {
           const yearIndex = Object.keys(dateRange).findIndex(
@@ -272,13 +256,8 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
   };
 
   const getMonthsBaseOnYear = (yearIndex: number) => {
-    selectedIndex.year = yearIndex;
     const selectedYear = dateRangeValues[yearIndex];
     setMonths(selectedYear.months);
-  };
-
-  const getDaysBaseOnMonth = (monthIndex: number) => {
-    selectedIndex.month = monthIndex;
   };
 
   // Total days in month with local validition(because moment has a bug! => moment.jDaysInMonth(1400, 12) does not have 31 days, it have 29 days)
@@ -301,18 +280,26 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
     setLoading(true);
   }, []);
 
-  const onChangeItem = useCallback(
-    () => ({
-      year: readable.year,
-      month: readable.month,
-      day: readable.day,
+  const onChangeItem = () => {
+    const selected = {
+      year: Number(years[year]),
+      month:
+        defaultMonths.findIndex(
+          (m) => m == dateRangeValues[year].months[month]
+        ) + 1,
+      day: Number(days[day]),
+    };
+
+    return {
+      year: selected.year,
+      month: selected.month,
+      day: selected.day,
       moment: moment(
-        `${readable.year}/${readable.month}/${readable.day}`,
+        `${selected.year}/${selected.month}/${selected.day}`,
         'jYYYY/jMM/jDD'
       ),
-    }),
-    []
-  );
+    };
+  };
 
   const onSelected = (
     selectedYear?: number | undefined,
@@ -320,24 +307,13 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
     selectedDay?: number | undefined
   ) => {
     if (selectedYear !== undefined) {
-      readable.year = Number(years[selectedYear]);
       setYear(selectedYear);
       getMonthsBaseOnYear(selectedYear);
     }
 
-    if (selectedMonth !== undefined) {
-      readable.month =
-        defaultMonths.indexOf(dateRangeValues[year].months[selectedMonth]) + 1;
-      readable.monthName = dateRangeValues[year].months[selectedMonth];
-      setMonth(selectedMonth);
-      getDaysBaseOnMonth(selectedMonth);
-    }
+    if (selectedMonth !== undefined) setMonth(selectedMonth);
 
-    if (selectedDay !== undefined) {
-      selectedIndex.day = selectedDay;
-      readable.day = Number(days[selectedDay]);
-      setDay(selectedDay);
-    }
+    if (selectedDay !== undefined) setDay(selectedDay);
 
     setLoading(false);
 
