@@ -1,21 +1,46 @@
 # react-native-jalali-date
 
-Jalali date for react native
+Jalali date picker for React Native both platform (Android and iOS)
+
+<p align="center">
+  <img src="https://github.com/mohamadnavabi/react-native-jalali-date/blob/master/example/Android.png?raw=true" width="300" max-width="300" title="Android example">
+  <img src="https://github.com/mohamadnavabi/react-native-jalali-date/blob/master/example/iOS.png?raw=true" width="250" max-width="300" alt="iOS example">
+</p>
 
 ## Installation
 
 ```sh
-npm install react-native-jalali-date
+npm install react-native-jalali-date @react-native-picker/picker
+```
+
+```sh
+yarn add react-native-jalali-date @react-native-picker/picker
+```
+
+<b>Add this line to ios/Podfile:<b>
+
+```js
+pod 'RNCPicker', :path => '../node_modules/@react-native-picker/picker'
 ```
 
 ## Usage
 
 ```js
-import { JalaliDateView } from "react-native-jalali-date";
+import JalaliDatePicker, { moment } from 'react-native-jalali-date';
 
-// ...
-
-<JalaliDateView color="tomato" />
+<JalaliDatePicker
+  visible={showDatePicker}
+  onClose={() => setshowDatePicker(false)}
+  onChange={(result) => {
+    console.log('Item changed', result);
+  }}
+  onButtonPress={(result) => {
+    console.log('Button pressed', result);
+    setshowDatePicker(false);
+  }}
+  initDate={{ year: 1372, month: 3, day: 12 }}
+  buttonText="انتخاب"
+/>;
 ```
 
 ## Contributing
@@ -25,7 +50,3 @@ See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the 
 ## License
 
 MIT
-
----
-
-Made with [create-react-native-library](https://github.com/callstack/react-native-builder-bob)
