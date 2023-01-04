@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "react-native-jalali-datepicker": ["./src/index"]
+      "react-native-jalali-date": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

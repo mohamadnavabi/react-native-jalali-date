@@ -1,6 +1,6 @@
 {
-  "name": "react-native-jalali-datepicker-example",
-  "description": "Example app for react-native-jalali-datepicker",
+  "name": "react-native-jalali-date-example",
+  "description": "Example app for react-native-jalali-date",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -9,11 +9,8 @@
     "start": "react-native start"
   },
   "dependencies": {
-    "jalali-moment": "^3.3.8",
     "react": "16.13.1",
-    "react-native": "0.63.4",
-    "react-native-modal": "^13.0.1",
-    "react-native-wheel-picker-android": "github:mohamadnavabi/ReactNativeWheelPicker#1.0.0"
+    "react-native": "0.63.4"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

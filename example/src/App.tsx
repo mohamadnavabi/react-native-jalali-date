@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Pressable, SafeAreaView, StyleSheet, Text } from 'react-native';
-import JalaliDatePicker from 'react-native-jalali-datepicker';
+import JalaliDatePicker from 'react-native-jalali-date';
 
 export default function App() {
   const [showDatePicker, setshowDatePicker] = useState(false);

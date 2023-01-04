@@ -71,9 +71,6 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
   onLoading,
   isLtr = false,
 }: JalaliDatePickerProps) => {
-  // TODO: uncomment this line when fix initDate bug
-  if (!visible && Platform.OS !== 'ios') return null;
-
   const minDateIsObject =
     typeof minDate === 'object' && minDate.hasOwnProperty('year');
   const maxDateIsObject =
@@ -348,9 +345,7 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
             <CustomPicker
               data={days.map(persianDigits)}
               selectedItem={day}
-              onItemSelected={(day: number) =>
-                onSelected(undefined, undefined, day)
-              }
+              onItemSelected={(day) => onSelected(undefined, undefined, day)}
               itemTextFontFamily={itemTextFontFamily}
               selectedItemTextFontFamily={selectedItemTextFontFamily}
             />
@@ -360,7 +355,7 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
             <CustomPicker
               data={months}
               selectedItem={month}
-              onItemSelected={(month: number) => onSelected(undefined, month)}
+              onItemSelected={(month) => onSelected(undefined, month)}
               itemTextFontFamily={itemTextFontFamily}
               selectedItemTextFontFamily={selectedItemTextFontFamily}
             />
@@ -370,7 +365,7 @@ const JalaliDatePicker: FunctionComponent<JalaliDatePickerProps> = ({
             <CustomPicker
               data={years.map(persianDigits)}
               selectedItem={year}
-              onItemSelected={(year: number) => onSelected(year)}
+              onItemSelected={(year) => onSelected(year)}
               itemTextFontFamily={itemTextFontFamily}
               selectedItemTextFontFamily={selectedItemTextFontFamily}
             />
